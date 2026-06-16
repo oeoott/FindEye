@@ -66,7 +66,8 @@ if uploaded_files:
             with st.spinner("분석 중..."):
                 for uploaded_file in uploaded_files:
                     # 임시 파일로 저장
-                    with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as tmp:
+                    suffix = os.path.splitext(uploaded_file.name)[1]
+                    with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
                         tmp.write(uploaded_file.read())
                         tmp_path = tmp.name
                     
