@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 import os
 import tempfile
-from predict import load_model, predict_image
+from predict-mj import load_model, predict_image
 
 # 페이지 설정
 st.set_page_config(page_title="FindEye", page_icon="👁️", layout="wide")
