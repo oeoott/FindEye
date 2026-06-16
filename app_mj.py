@@ -86,7 +86,8 @@ if uploaded_files:
                             "class": pred["class"],
                             "confidence": pred["confidence"],
                             "similarity": similarity,
-                            "image_path": tmp_path
+                            "image_path": tmp_path,
+                            "image_data": Image.open(tmp_path).copy()
                         })
                     
                     os.unlink(tmp_path)
