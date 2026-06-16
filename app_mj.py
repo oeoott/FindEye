@@ -104,7 +104,7 @@ if uploaded_files:
                 for i, res in enumerate(results_list):
                     col1, col2 = st.columns([1, 2])
                     with col1:
-                        st.image(res["image_path"], width=200)
+                        st.image(res["image_data"], width=200)
                     with col2:
                         st.markdown(f"**파일명**: {res['file']}")
                         st.markdown(f"**분류**: {res['class']}")
