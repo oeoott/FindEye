@@ -1,0 +1,25 @@
+# ===== FindEye 프로젝트 의존성 =====
+
+# --- YOLO / 모델 학습 & 추론 ---
+ultralytics==8.3.0          # YOLOv11 학습/추론
+torch>=2.1.0
+torchvision>=0.16.0
+
+# --- 데이터셋 다운로드 (Roboflow) ---
+roboflow==1.1.50
+
+# --- 영상 / 이미지 처리 ---
+opencv-python==4.10.0.84
+Pillow==10.4.0
+
+# --- 데이터 처리 ---
+numpy>=1.26.0
+pandas==2.2.2
+pyyaml==6.0.2
+
+# --- 웹 앱 (Streamlit) ---
+streamlit==1.38.0
+
+# --- 결과 시각화 ---
+matplotlib==3.9.2
+plotly==5.24.0
