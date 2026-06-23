@@ -199,7 +199,7 @@ def main():
             for col, cand in zip(cols, row_candidates):
                 with col:
                     crop_rgb = bgr_to_rgb(cand.crop_image)
-                    st.image(crop_rgb, use_container_width=True)
+                    st.image(crop_rgb, use_column_width=True)
                     st.caption(
                         f"📍 {cand.location}\n\n"
                         f"🕒 {cand.detected_time.strftime('%Y-%m-%d %H:%M:%S') if cand.detected_time else 'N/A'}\n\n"
