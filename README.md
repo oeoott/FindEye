@@ -97,3 +97,9 @@ python utils/collect_results.py --runs_dir runs/detect
 ## 라이선스
 
 MIT License
+
+이 프로젝트는 MIT License를 따른다. Copyright (c) 2026 oeoott.
+
+저작권 고지와 라이선스 전문을 포함하는 조건 아래, 사용·복제·수정·배포·재라이선스 및 판매가 자유롭게 허용된다. 단, 소프트웨어는 어떠한 보증도 없이 "있는 그대로(as is)" 제공되며, 사용으로 인해 발생하는 문제에 대해 저작권자는 책임지지 않는다.
+
+전체 내용은 LICENSE 파일을 참고.
