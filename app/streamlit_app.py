@@ -173,8 +173,8 @@ def main():
                 bottom_bright=bottom_bright,
                 metadata=meta_for_search,
                 conf_threshold=conf_threshold,
-                frame_stride=frame_stride,
-                max_candidates=max_candidates if max_candidates > 0 else None,
+                frame_stride=5,
+                max_candidates=None,
                 progress_callback=update_progress,
             )
         except Exception as e:
