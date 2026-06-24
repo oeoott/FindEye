@@ -180,6 +180,8 @@ def search_video(
             frame_idx += 1
     finally:
         cap.release()
+        
+    candidates.sort(key=lambda c: c.detection.confidence, reverse=True)
 
     return candidates, total_detected_persons
 
