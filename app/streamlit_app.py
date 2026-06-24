@@ -137,18 +137,9 @@ def main():
     top_bright = (top_choice == "밝음")
     bottom_bright = (bottom_choice == "밝음")
 
-    with st.expander("⚙️ 고급 설정"):
-        conf_threshold = st.slider(
-            "Confidence 임계값", min_value=0.1, max_value=0.9, value=0.5, step=0.05
-        )
-        frame_stride = st.slider(
-            "프레임 샘플링 간격 (작을수록 정확하지만 느림)",
-            min_value=1, max_value=30, value=5, step=1
-        )
-        max_candidates = st.number_input(
-            "최대 후보 수 (0 = 제한 없음)",
-            min_value=0, value=0, step=1
-        )
+    conf_threshold = st.slider(
+        "신뢰도", min_value=0.1, max_value=0.9, value=0.5, step=0.05
+    )
 
     # -----------------------------------------------------------------------
     # 4. 검색 실행
@@ -220,13 +211,13 @@ def main():
                     with img_col:
                         st.image(img_rgb)
                     with info_col:
-                        st.markdown(f"**📍 장소**  \n{cand.location}")
+                        st.markdown(f"**장소**  \n{cand.location}")
                         st.markdown(
-                            f"**🕒 시각**  \n"
+                            f"**시각**  \n"
                             f"{cand.detected_time.strftime('%Y-%m-%d %H:%M:%S') if cand.detected_time else 'N/A'}"
                         )
-                        st.markdown(f"**🎯 신뢰도**  \n{cand.detection.confidence:.2f}")
-                        st.markdown(f"**🏷️ 클래스**  \n{cand.detection.class_name}")
+                        st.markdown(f"**신뢰도**  \n{cand.detection.confidence:.2f}")
+                        st.markdown(f"**클래스**  \n{cand.detection.class_name}")
             st.divider()
 
         st.markdown("**전체 결과 테이블**")
