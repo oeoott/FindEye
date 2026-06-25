@@ -6,7 +6,7 @@ FindEye 데모·검증용 테스트 CCTV 영상 모음. 실제 CCTV와 유사한
 
 | 파일 | 장소 | 해상도 | 길이 |
 |------|------|--------|------|
-| `park_cctv.mp4` | 공원 | 1920×1080 | 29초 |
+| `park-cctv.mp4` | 공원 | 1920×1080 | 29초 |
 | `market-cctv.mov` | 시장 | 1920×1080 | 30초 |
 | `school-cctv.mp4` | 학교 | 1280×720 | 10초 |
 
@@ -14,7 +14,7 @@ FindEye 데모·검증용 테스트 CCTV 영상 모음. 실제 CCTV와 유사한
 
 앱에 영상을 업로드하면 파일명을 기준으로 `data/video_metadata.csv`에서 장소·시작 시간을 자동으로 불러온다. 파일명이 CSV와 정확히 일치해야 매칭된다.
 
-- `market-cctv.mov`, `park_cctv.mp4` → CSV에 등록되어 있어 장소·시간이 자동 입력된다.
+- `market-cctv.mov`, `park-cctv.mp4` → CSV에 등록되어 있어 장소·시간이 자동 입력된다.
 - `school-cctv.mp4` → CSV에 미등록 상태이므로 직접 입력하거나 CSV에 추가한다.
 
 CSV에 추가할 경우 예시:
