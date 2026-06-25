@@ -14,8 +14,7 @@ FindEye 데모·검증용 테스트 CCTV 영상 모음. 실제 CCTV와 유사한
 
 앱에 영상을 업로드하면 파일명을 기준으로 `data/video_metadata.csv`에서 장소·시작 시간을 자동으로 불러온다. 파일명이 CSV와 정확히 일치해야 매칭된다.
 
-- `market-cctv.mov`→ CSV에 등록되어 있어 장소·시간이 자동 입력된다.
-- `park-cctv.mp4` → CSV에는 `park_cctv.mp4`(언더스코어)로 등록되어 있어 현재 파일명(`park-cctv.mp4`, 하이픈)과 일치하지 않는다. 파일명 또는 CSV 중 한쪽을 맞춰야 자동 매칭된다.
+- `market-cctv.mov`, `park_cctv.mp4` → CSV에 등록되어 있어 장소·시간이 자동 입력된다.
 - `school-cctv.mp4` → CSV에 미등록 상태이므로 직접 입력하거나 CSV에 추가한다.
 
 CSV에 추가할 경우 예시:
