@@ -65,6 +65,7 @@ FindEye/
 │   └── streamlit_app.py           # 메인 웹 앱
 ├── data/
 │   └── video_metadata.csv         # 영상 파일명 ↔ 장소·시작시간 매핑
+├── test-videos/                   # 데모·검증용 테스트 CCTV 영상
 ├── tests/
 │   └── test_filtering.py          # 메타데이터 매칭·중복 제거 단위 테스트
 ├── weights/
@@ -103,6 +104,10 @@ market-cctv.mov,시장,2026-06-17 11:37:00
 - `video_file`: 업로드할 영상 파일명 (확장자 포함, 정확히 일치해야 매칭됨)
 - `location`: 촬영 장소
 - `start_time`: 촬영 시작 시각 (`YYYY-MM-DD HH:MM:SS`) — 탐지 시각 계산의 기준점
+
+## 데모 영상
+
+`test-videos/` 폴더에 검증용 테스트 CCTV 영상을 제공한다. 자세한 목록과 사용법은 [test-videos/README.md](test-videos/README.md) 참고.
 
 ## 테스트
 
