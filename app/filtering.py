@@ -23,7 +23,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 from model.inference import FindEyeDetector, Detection, class_id_from_filters  # noqa: E402
 
 DEFAULT_METADATA_PATH = Path(__file__).resolve().parent.parent / "data" / "video_metadata.csv"
-DEFAULT_FRAME_STRIDE = 5
+DEFAULT_FRAME_STRIDE = 8
 MIN_CONFIDENCE = 0.5        # ★ 신뢰도 0.5 미만 후보 제외
 IOU_DEDUP_THRESHOLD = 0.5   # ★ 동일 인물 중복 제거 IoU 임계값
 
@@ -53,25 +53,63 @@ def load_metadata_table(metadata_path: Optional[str] = None) -> pd.DataFrame:
     if not path.exists():
         return pd.DataFrame(columns=["video_file", "location", "start_time"])
     df = pd.read_csv(path)
-    df["start_time"] = pd.to_datetime(df["start_time"])
+    if "video_file" in df.columns:
+        df["video_file"] = df["video_file"].fillna("").astype(str).str.strip()
+    if "location" in df.columns:
+        df["location"] = df["location"].fillna("").astype(str)
+    if "start_time" in df.columns:
+        df["start_time"] = pd.to_datetime(df["start_time"], errors="coerce")
     return df
 
 
 def match_metadata(video_filename: str, metadata_df: pd.DataFrame) -> VideoMetadata:
     """파일명 기준으로 메타데이터 매칭. 없으면 matched=False 반환."""
-    row = metadata_df[metadata_df["video_file"] == video_filename]
-    if row.empty:
+    if metadata_df is None or metadata_df.empty:
         return VideoMetadata(
-            video_file=video_filename,
+            video_file=str(video_filename or ""),
             location="(알 수 없음 - 직접 입력 필요)",
             start_time=datetime.now(),
             matched=False,
         )
-    record = row.iloc[0]
+
+    if "video_file" not in metadata_df.columns:
+        return VideoMetadata(
+            video_file=str(video_filename or ""),
+            location="(알 수 없음 - 직접 입력 필요)",
+            start_time=datetime.now(),
+            matched=False,
+        )
+
+    filename = str(video_filename or "").strip()
+    normalized_values = [
+        str(value).strip() if pd.notna(value) else ""
+        for value in metadata_df["video_file"].tolist()
+    ]
+
+    record = None
+    for idx, value in enumerate(normalized_values):
+        if value == filename:
+            record = metadata_df.iloc[idx]
+            break
+
+    if record is None:
+        return VideoMetadata(
+            video_file=filename,
+            location="(알 수 없음 - 직접 입력 필요)",
+            start_time=datetime.now(),
+            matched=False,
+        )
+    start_time_value = record.get("start_time")
+    parsed_timestamp = pd.to_datetime(start_time_value, errors="coerce")
+    if pd.isna(parsed_timestamp):
+        parsed_start_time = datetime.now()
+    else:
+        parsed_start_time = parsed_timestamp.to_pydatetime()
+
     return VideoMetadata(
-        video_file=video_filename,
-        location=str(record["location"]),
-        start_time=pd.to_datetime(record["start_time"]).to_pydatetime(),
+        video_file=filename,
+        location=str(record.get("location", "")),
+        start_time=parsed_start_time,
         matched=True,
     )
 
