@@ -96,7 +96,7 @@ CSV 형식은 다음과 같다.
 
 ```csv
 video_file,location,start_time
-park_cctv.mp4,공원,2026-06-21 14:25:00
+park-cctv.mp4,공원,2026-06-21 14:25:00
 market-cctv.mov,시장,2026-06-17 11:37:00
 ```
 
